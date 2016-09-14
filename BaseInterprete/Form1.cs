@@ -18,45 +18,60 @@ namespace BaseInterprete
         public Form1()
         {
             InitializeComponent();
+        }
 
-            String programa = "2. + 418 - 47";
-            Lexer lexer = new Lexer(programa);
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string code = userControlTextEditor1.GetText();
+            Lexer lexer = new Lexer(code);
+
+            StringBuilder builder = new StringBuilder();
 
             while (!lexer.match(Token.FIN_ARCHIVO))
             {
                 if (lexer.match(Token.VALOR_ENTERO))
                 {
-                    System.Diagnostics.Debug.WriteLine("Entero " + lexer.obtenerEntero());
+                    builder.Append("Entero " + lexer.obtenerEntero());
+                    builder.Append(Environment.NewLine);
                 }
 
                 if (lexer.match(Token.SUMA))
                 {
-                    System.Diagnostics.Debug.WriteLine("Suma");
+                    builder.Append("Suma");
+                    builder.Append(Environment.NewLine);
                 }
 
                 if (lexer.match(Token.RESTA))
                 {
-                    System.Diagnostics.Debug.WriteLine("Resta");
+                    builder.Append("Resta");
+                    builder.Append(Environment.NewLine);
                 }
 
                 if (lexer.match(Token.REAL))
                 {
-                    System.Diagnostics.Debug.WriteLine("Real " + lexer.obtenerReal());
+                    builder.Append("Real " + lexer.obtenerReal());
+                    builder.Append(Environment.NewLine);
                 }
 
                 if (lexer.match(Token.ABRIR_PARENTESIS))
                 {
-                    System.Diagnostics.Debug.WriteLine("Abre Parentesis");
+                    builder.Append("Abre Parentesis");
+                    builder.Append(Environment.NewLine);
                 }
 
                 if (lexer.match(Token.CERRAR_PARENTESIS))
                 {
-                    System.Diagnostics.Debug.WriteLine("Cerrar Parentesis");
+                    builder.Append("Cerrar Parentesis");
+                    builder.Append(Environment.NewLine);
                 }
 
                 lexer.advance();
 
             }
+
+            txtResult.Text = builder.ToString();
         }
+
+
     }
 }

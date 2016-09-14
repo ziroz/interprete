@@ -24,7 +24,6 @@ namespace BaseInterprete.UserControls
         {
 
             InitializeComponent();
-
             TextEditor.Options = new ICSharpCode.AvalonEdit.TextEditorOptions()
             {
                 EnableRectangularSelection = true,
@@ -33,6 +32,7 @@ namespace BaseInterprete.UserControls
                 EnableTextDragDrop = true,
                 AllowScrollBelowDocument = true
             };
+            TextEditor.TextArea.Focus();
         }
 
         public string GetText()

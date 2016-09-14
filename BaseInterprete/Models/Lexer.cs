@@ -56,14 +56,13 @@ namespace BaseInterprete.Models
                     if (char.IsDigit(caracter))
                     {
                         while (posicion + longitud < n
-                                && char.IsDigit(expresion[posicion
-                                        + longitud]))
+                                && char.IsDigit(expresion[posicion + longitud]))
                         {
                             ++longitud;
                         }
 
                         if (posicion + longitud < n
-                                && expresion[posicion + longitud] == '.')
+                                && (expresion[posicion + longitud] == '.' || expresion[posicion + longitud] == ','))
                         {
 
                             longitud++;
