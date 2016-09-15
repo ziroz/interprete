@@ -37,13 +37,13 @@ namespace BaseInterprete
 
                 if (lexer.match(Token.SUMA))
                 {
-                    builder.Append("Suma");
+                    builder.Append("Suma: " + lexer.obtenerSimbolo());
                     builder.Append(Environment.NewLine);
                 }
 
                 if (lexer.match(Token.RESTA))
                 {
-                    builder.Append("Resta");
+                    builder.Append("Resta: " + lexer.obtenerSimbolo());
                     builder.Append(Environment.NewLine);
                 }
 
@@ -55,16 +55,64 @@ namespace BaseInterprete
 
                 if (lexer.match(Token.ABRIR_PARENTESIS))
                 {
-                    builder.Append("Abre Parentesis");
+                    builder.Append("Abre Parentesis: " + lexer.obtenerSimbolo());
                     builder.Append(Environment.NewLine);
                 }
 
                 if (lexer.match(Token.CERRAR_PARENTESIS))
                 {
-                    builder.Append("Cerrar Parentesis");
+                    builder.Append("Cerrar Parentesis: " + lexer.obtenerSimbolo());
                     builder.Append(Environment.NewLine);
                 }
 
+                
+                if (lexer.match(Token.MAYOR_QUE))
+                {
+                    builder.Append("Mayor Que: " + lexer.obtenerSimbolo());
+                    builder.Append(Environment.NewLine);
+                }
+                
+                if (lexer.match(Token.MAYOR_QUE))
+                {
+                    builder.Append("Mayor Que: " + lexer.obtenerSimbolo());
+                    builder.Append(Environment.NewLine);
+                }
+                
+                if (lexer.match(Token.MAYOR_IGUAL_QUE))
+                {
+                    builder.Append("Mayor Igual Que: " + lexer.obtenerSimbolo());
+                    builder.Append(Environment.NewLine);
+                }
+                
+                if (lexer.match(Token.MENOR_IGUAL_QUE))
+                {
+                    builder.Append("Menor Igual Que: " + lexer.obtenerSimbolo());
+                    builder.Append(Environment.NewLine);
+                }
+                
+                if (lexer.match(Token.MENOR_QUE))
+                {
+                    builder.Append("Menor Que: " + lexer.obtenerSimbolo());
+                    builder.Append(Environment.NewLine);
+                }
+                
+                if (lexer.match(Token.DIFERENTE))
+                {
+                    builder.Append("Diferente: " + lexer.obtenerSimbolo());
+                    builder.Append(Environment.NewLine);
+                }
+
+                if (lexer.match(Token.MULTIPLICACION))
+                {
+                    builder.Append("Multiplicación: " + lexer.obtenerSimbolo());
+                    builder.Append(Environment.NewLine);
+                }
+
+                if (lexer.match(Token.DIVISION))
+                {
+                    builder.Append("División: " + lexer.obtenerSimbolo());
+                    builder.Append(Environment.NewLine);
+                }
                 lexer.advance();
 
             }

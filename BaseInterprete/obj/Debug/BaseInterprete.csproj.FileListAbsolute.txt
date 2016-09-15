@@ -13,3 +13,18 @@ c:\users\universidad poligran\documents\visual studio 2013\Projects\BaseInterpre
 c:\users\universidad poligran\documents\visual studio 2013\Projects\BaseInterprete\BaseInterprete\obj\Debug\BaseInterprete.exe
 c:\users\universidad poligran\documents\visual studio 2013\Projects\BaseInterprete\BaseInterprete\obj\Debug\BaseInterprete.pdb
 C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\BaseInterprete\BaseInterprete\obj\Debug\BaseInterprete.csprojResolveAssemblyReference.cache
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\bin\Debug\BaseInterprete.exe.config
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\obj\Debug\BaseInterprete.exe
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\obj\Debug\BaseInterprete.pdb
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\bin\Debug\BaseInterprete.exe
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\bin\Debug\BaseInterprete.pdb
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\bin\Debug\ICSharpCode.AvalonEdit.dll
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\bin\Debug\ICSharpCode.AvalonEdit.xml
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\obj\Debug\BaseInterprete.csprojResolveAssemblyReference.cache
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\obj\Debug\UserControls\UserControlTextEditor.baml
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\obj\Debug\UserControls\UserControlTextEditor.g.cs
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\obj\Debug\BaseInterprete_MarkupCompile.cache
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\obj\Debug\BaseInterprete.g.resources
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\obj\Debug\BaseInterprete.Form1.resources
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\obj\Debug\BaseInterprete.Properties.Resources.resources
+C:\Users\Estudiante\Desktop\Visual\BaseInterprete\obj\Debug\BaseInterprete.csproj.GenerateResource.Cache

@@ -46,11 +46,45 @@ namespace BaseInterprete.Models
                 case '-':
                     valorToken = Token.RESTA;
                     break;
+                case '*':
+                    valorToken = Token.MULTIPLICACION;
+                    break;
+                case '/':
+                    valorToken = Token.DIVISION;
+                    break;
                 case '(':
                     valorToken = Token.ABRIR_PARENTESIS;
                     break;
                 case ')':
                     valorToken = Token.CERRAR_PARENTESIS;
+                    break;
+                case '<':
+                    if (posicion + longitud < n
+                                && (expresion[posicion + longitud] == '=')){
+                        ++longitud;
+                        valorToken = Token.MENOR_IGUAL_QUE;
+                    }else if (posicion + longitud+1 < n
+                                && (expresion[posicion + longitud] == '>')){
+                        ++longitud;
+                        valorToken = Token.DIFERENTE;
+                    }else{
+                        valorToken = Token.MENOR_QUE;
+                    }
+                    break;
+                case '>':
+                    if (posicion + longitud < n
+                                && (expresion[posicion + longitud] == '='))
+                    {
+                        ++longitud;
+                        valorToken = Token.MAYOR_IGUAL_QUE;
+                    }
+                    else
+                    {
+                        valorToken = Token.MAYOR_QUE;
+                    }
+                    break;
+                case '=':
+                    valorToken = Token.IGUAL_QUE;
                     break;
                 default:
                     if (char.IsDigit(caracter))
@@ -109,6 +143,11 @@ namespace BaseInterprete.Models
 
     public double obtenerReal() {
         return Convert.ToDouble(expresion.Substring(posicion, longitud));
+    }
+
+    public string obtenerSimbolo()
+    {
+        return expresion.Substring(posicion, longitud);
     }
     }
 }
