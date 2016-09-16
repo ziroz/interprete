@@ -36,7 +36,18 @@ namespace BaseInterprete.Models
         O_LOGICO = 18,
         NO_LOGICO = 19,
 
+
+        ASIGNACION = 20,
+        COMA = 21,
+        PUNTO_COMA = 22,
+        ABRIR_CORCHETE = 23,
+        CERRAR_CORCHETE = 24,
+        ABRIR_LLAVE = 25,
+        CERRAR_LLAVE = 26,
+
+
         VALOR_ENTERO = 100,
         REAL = 101,
+        IDENTIFICADOR = 102,
     }
 }
