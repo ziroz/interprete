@@ -275,7 +275,7 @@ namespace BaseInterprete.Models
 
         public double obtenerReal()
         {
-            return Convert.ToDouble(expresion.Substring(posicion, longitud));
+            return Convert.ToDouble(expresion.Substring(posicion, longitud).Replace(".", ","));
         }
 
         public string obtenerSimbolo()

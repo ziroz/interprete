@@ -31,7 +31,7 @@ namespace BaseInterprete
             {
                 if (lexer.match(Token.VALOR_ENTERO))
                 {
-                    builder.Append("Entero " + lexer.obtenerEntero());
+                    builder.Append("Entero: " + lexer.obtenerEntero());
                 }
 
                 if (lexer.match(Token.SUMA))
@@ -46,7 +46,7 @@ namespace BaseInterprete
 
                 if (lexer.match(Token.REAL))
                 {
-                    builder.Append("Real " + lexer.obtenerReal());
+                    builder.Append("Real: " + lexer.obtenerReal());
                 }
 
                 if (lexer.match(Token.ABRIR_PARENTESIS))
@@ -59,10 +59,10 @@ namespace BaseInterprete
                     builder.Append("Cerrar Parentesis: " + lexer.obtenerSimbolo());
                 }
 
-                
-                if (lexer.match(Token.MAYOR_QUE))
+
+                if (lexer.match(Token.IGUAL_QUE))
                 {
-                    builder.Append("Mayor Que: " + lexer.obtenerSimbolo());
+                    builder.Append("Igual Que: " + lexer.obtenerSimbolo());
                 }
                 
                 if (lexer.match(Token.MAYOR_QUE))
