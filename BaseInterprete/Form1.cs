@@ -134,11 +134,18 @@ namespace BaseInterprete
                 {
                     builder.Append("Asignación: " + lexer.obtenerSimbolo());
                 }
-
-
+                
                 if (lexer.match(Token.IDENTIFICADOR))
                 {
                     builder.Append("Variable: " + lexer.obtenerSimbolo());
+                }
+
+                if (lexer.match(Token.RESERVADA_IF)
+                    || lexer.match(Token.RESERVADA_ELSE)
+                    || lexer.match(Token.RESERVADA_WHILE)
+                    || lexer.match(Token.RESERVADA_FOR))
+                {
+                    builder.Append("Reservada: " + lexer.obtenerSimbolo());
                 }
 
                 builder.Append(Environment.NewLine);
@@ -150,6 +157,14 @@ namespace BaseInterprete
             txtResult.Text = builder.ToString();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F5)
+            {
+                button1_Click(null, null);
+            }
 
+            return base.ProcessCmdKey(ref msg, keyData);
+        }      
     }
 }

@@ -30,10 +30,10 @@ namespace BaseInterprete.UserControls
                 CutCopyWholeLine = true,
                 HighlightCurrentLine = true,
                 EnableTextDragDrop = true,
-                AllowScrollBelowDocument = true
+                AllowScrollBelowDocument = true,
             };
             TextEditor.TextArea.Focus();
-        }
+        }   
 
         public string GetText()
         {

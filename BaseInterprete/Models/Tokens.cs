@@ -45,6 +45,12 @@ namespace BaseInterprete.Models
         ABRIR_LLAVE = 25,
         CERRAR_LLAVE = 26,
 
+        RESERVADA_IF = 26,
+        RESERVADA_ELSE = 27,
+        RESERVADA_FOR = 28,
+        RESERVADA_WHILE = 29,
+
+
 
         VALOR_ENTERO = 100,
         REAL = 101,

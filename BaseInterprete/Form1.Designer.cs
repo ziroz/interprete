@@ -46,9 +46,9 @@ namespace BaseInterprete
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(48, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 41);
+            this.button1.Size = new System.Drawing.Size(142, 41);
             this.button1.TabIndex = 2;
-            this.button1.Text = "      Run";
+            this.button1.Text = "       Run (F5)";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -63,18 +63,18 @@ namespace BaseInterprete
             this.txtResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtResult.ForeColor = System.Drawing.SystemColors.Info;
-            this.txtResult.Location = new System.Drawing.Point(48, 365);
+            this.txtResult.Location = new System.Drawing.Point(48, 268);
             this.txtResult.Name = "txtResult";
             this.txtResult.ReadOnly = true;
-            this.txtResult.Size = new System.Drawing.Size(840, 124);
+            this.txtResult.Size = new System.Drawing.Size(840, 221);
             this.txtResult.TabIndex = 5;
-            this.txtResult.Text = "ftghfjghj";
+            this.txtResult.Text = "";
             // 
             // elementHost1
             // 
             this.elementHost1.Location = new System.Drawing.Point(48, 73);
             this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(840, 286);
+            this.elementHost1.Size = new System.Drawing.Size(840, 189);
             this.elementHost1.TabIndex = 3;
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.userControlTextEditor1;
@@ -91,6 +91,7 @@ namespace BaseInterprete
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Interprete";
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
 
