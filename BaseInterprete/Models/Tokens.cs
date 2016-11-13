@@ -36,8 +36,6 @@ namespace BaseInterprete.Models
         O_LOGICO = 18,
         NO_LOGICO = 19,
 
-
-        ASIGNACION = 20,
         COMA = 21,
         PUNTO_COMA = 22,
         ABRIR_CORCHETE = 23,
@@ -50,10 +48,12 @@ namespace BaseInterprete.Models
         RESERVADA_FOR = 28,
         RESERVADA_WHILE = 29,
 
-
-
         VALOR_ENTERO = 100,
-        REAL = 101,
-        IDENTIFICADOR = 102,
+        VALOR_REAL = 101,
+        VALOR_LOGICO = 102,
+        VALOR_CARACTER = 103,
+        VALOR_CADENA = 104,
+        IDENTIFICADOR = 105,
+        ASIGNACION = 106,
     }
 }

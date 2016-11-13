@@ -227,7 +227,7 @@ namespace BaseInterprete.Models
                                     ++longitud;
                                 }
 
-                                valorToken = Token.REAL;
+                                valorToken = Token.VALOR_REAL;
                             }
                             else
                             {
@@ -267,6 +267,19 @@ namespace BaseInterprete.Models
 
             return token == nuevoToken;
         }
+        public bool nextTokenIs(Token token)
+        {
+            int auxiliarPoisicion = posicion;
+            int auxiliarLongitud = longitud;
+
+            advance();
+            bool ans = match(token);
+
+            posicion = auxiliarPoisicion;
+            longitud = auxiliarLongitud;
+
+            return ans;
+        }
 
         public int obtenerEntero()
         {
@@ -281,6 +294,12 @@ namespace BaseInterprete.Models
         public string obtenerSimbolo()
         {
             return expresion.Substring(posicion, longitud);
+        }
+
+        public string obtenerCadena()
+        {
+            return expresion.Substring(posicion, posicion
+                    + longitud);
         }
 
         public bool validarIdentificador(string cadena)
