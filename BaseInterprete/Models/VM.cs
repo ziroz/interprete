@@ -84,9 +84,60 @@ namespace BaseInterprete.Models
                         throw new ArithmeticException("Error: Falta operando.");
                     }
                     break;
+                case Instruccion.MULTIPLICACION:
+                    if (pilaNumeros.Count() > 1)
+                    {
+                        object numero2 = pilaNumeros.Pop();
+                        object numero1 = pilaNumeros.Pop();
+
+                        if (numero1.GetType() == typeof(Int32)
+                                && numero2.GetType() == typeof(Int32))
+                        {
+                            pilaNumeros.Push(Convert.ToInt32(numero1) * Convert.ToInt32(numero2));
+                        }
+                        else
+                        {
+                            pilaNumeros.Push(Convert.ToSingle(numero1) * Convert.ToSingle(numero2));
+                        }
+
+                    }
+                    else
+                    {
+                        throw new ArithmeticException("Error: Falta operando.");
+                    }
+                    break;
+
+                case Instruccion.DIVISION:
+                    if (pilaNumeros.Count() > 1)
+                    {
+                        object numero2 = pilaNumeros.Pop();
+                        object numero1 = pilaNumeros.Pop();
+
+                        if (numero2.Equals(0)) throw new ArithmeticException("No se puede dividir por 0");
+                        if (numero1.GetType() == typeof(Int32)
+                                && numero2.GetType() == typeof(Int32))
+                        {
+                            pilaNumeros.Push(Convert.ToInt32(numero1) / Convert.ToInt32(numero2));
+                        }
+                        else
+                        {
+                            pilaNumeros.Push(Convert.ToSingle(numero1) / Convert.ToSingle(numero2));
+                        }
+
+                    }
+                    else
+                    {
+                        throw new ArithmeticException("Error: Falta operando.");
+                    }
+                    break;
                 case Instruccion.PUSH_NUMERO_ENTERO:
                     ++i;
                     pilaNumeros.Push(Convert.ToInt32(listaInstrucciones[i]));
+                    break;
+                case Instruccion.PUSH_IDENTIFICADOR:
+                    ++i;
+                    Variable variable = tablaDeSimbolos.First(m => m.nombre == listaInstrucciones[i].ToString());
+                    pilaNumeros.Push(variable.valor);
                     break;
                 case Instruccion.PUSH_NUMERO_REAL:
                     ++i;
@@ -98,7 +149,11 @@ namespace BaseInterprete.Models
                     if (pilaNumeros.Count() > 0) {
                         object numero1 = pilaNumeros.Pop();
 
+                        pilaNumeros.Push(numero1);
+
                         tablaDeSimbolos[index].valor = numero1;
+
+                        pilaNumeros.Push(numero1);
 
                         cadenaResultado += "\n" + tablaDeSimbolos[index];
 

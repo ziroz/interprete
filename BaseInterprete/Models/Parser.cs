@@ -24,7 +24,7 @@ namespace BaseInterprete.Models
         {
             while (!lexer.match(Token.FIN_ARCHIVO))
             {
-                asignacion();
+                asignaciones();
                 expresiones();
             }
 
@@ -52,7 +52,7 @@ namespace BaseInterprete.Models
             }
         }
 
-        public void termino()
+        public void factor()
         {
             if (lexer.match(Token.VALOR_ENTERO))
             {
@@ -66,7 +66,6 @@ namespace BaseInterprete.Models
             else if (lexer.match(Token.VALOR_REAL))
             {
                 double real = lexer.obtenerReal();
-                //System.out.println("real: " + real);
 
                 listaInstrucciones.Add(Instruccion.PUSH_NUMERO_REAL);
                 listaInstrucciones.Add(real);
@@ -86,23 +85,27 @@ namespace BaseInterprete.Models
                 //System.out.println(")");
 
                 lexer.advance();
+            }else if (lexer.match(Token.IDENTIFICADOR))
+            {
+                string cadena = lexer.obtenerCadena();
+
+                /*   Acá posiblemente se validan las palabras reservadas    */
+
+                listaInstrucciones.Add(Instruccion.PUSH_IDENTIFICADOR);
+                listaInstrucciones.Add(cadena);
+
+                lexer.advance();
             }
         }
-
-        public void expresion()
-        {
-            termino();
-            expresionPrima();
-        }
-
-        public void expresionPrima()
+       
+        public void terminoPrimo()
         {
             if (lexer.match(Token.SUMA))
             {
                 lexer.advance();
                 termino();
                 listaInstrucciones.Add(Instruccion.SUMA);
-                expresionPrima();
+                terminoPrimo();
             }
 
             if (lexer.match(Token.RESTA))
@@ -110,7 +113,54 @@ namespace BaseInterprete.Models
                 lexer.advance();
                 termino();
                 listaInstrucciones.Add(Instruccion.RESTA);
-                expresionPrima();
+                terminoPrimo();
+            }
+        }
+        
+        public void factorPrimo()
+        {
+            if (lexer.match(Token.MULTIPLICACION))
+            {
+                lexer.advance();
+                factor();
+                listaInstrucciones.Add(Instruccion.MULTIPLICACION);
+                factorPrimo();
+            }
+
+            if (lexer.match(Token.DIVISION))
+            {
+                lexer.advance();
+                factor();
+                listaInstrucciones.Add(Instruccion.DIVISION);
+                factorPrimo();
+            }
+        }
+
+        public void expresion()
+        {
+            termino();
+            terminoPrimo();
+        }
+
+        public void termino()
+        {
+            factor();
+            factorPrimo();
+        }
+
+
+        public void asignaciones()
+        {
+            if (lexer.match(Token.IDENTIFICADOR))
+            {
+                asignacion();
+                if (!lexer.match(Token.PUNTO_COMA))
+                {
+                    //System.out.println("Error: Se esperaba ; en la instrucción de asignación.");
+                    return;
+                }
+                lexer.advance();
+                asignaciones();
             }
         }
 
@@ -130,13 +180,9 @@ namespace BaseInterprete.Models
                 lexer.advance();
                 lexer.advance();
 
+                asignaciones();
+
                 expresion();
-                if (!lexer.match(Token.PUNTO_COMA))
-                {
-                    //System.out.println("Error: Se esperaba ; en la instrucción de asignación.");
-                    return;
-                }
-                lexer.advance();
 
                 listaInstrucciones.Add(Instruccion.ASIGNACION);
                 listaInstrucciones.Add(tablaDeSimbolos.IndexOf(id));
