@@ -151,7 +151,7 @@ namespace BaseInterprete.Models
 
         public void asignaciones()
         {
-            if (lexer.match(Token.IDENTIFICADOR))
+            if (lexer.match(Token.IDENTIFICADOR) && lexer.nextTokenIs(Token.ASIGNACION))
             {
                 asignacion();
                 if (!lexer.match(Token.PUNTO_COMA))
@@ -166,27 +166,24 @@ namespace BaseInterprete.Models
 
         public void asignacion()
         {
-            if (lexer.match(Token.IDENTIFICADOR) && lexer.nextTokenIs(Token.ASIGNACION))
+            String cadena = lexer.obtenerCadena();
+
+            Variable id = new Variable(cadena);
+
+            if (!tablaDeSimbolos.Contains(id))
             {
-                String cadena = lexer.obtenerCadena();
-
-                Variable id = new Variable(cadena);
-
-                if (!tablaDeSimbolos.Contains(id))
-                {
-                    tablaDeSimbolos.Add(id);
-                }
-
-                lexer.advance();
-                lexer.advance();
-
-                asignaciones();
-
-                expresion();
-
-                listaInstrucciones.Add(Instruccion.ASIGNACION);
-                listaInstrucciones.Add(tablaDeSimbolos.IndexOf(id));
+                tablaDeSimbolos.Add(id);
             }
+
+            lexer.advance();
+            lexer.advance();
+
+            asignaciones();
+
+            expresion();
+
+            listaInstrucciones.Add(Instruccion.ASIGNACION);
+            listaInstrucciones.Add(tablaDeSimbolos.IndexOf(id));
         }
 
         public List<object> obtenerInstrucciones()
