@@ -272,8 +272,7 @@ namespace BaseInterprete.Models
             int auxiliarPoisicion = posicion;
             int auxiliarLongitud = longitud;
 
-            advance();
-            bool ans = match(token);
+            bool ans = getToken() == token;
 
             posicion = auxiliarPoisicion;
             longitud = auxiliarLongitud;
@@ -298,8 +297,7 @@ namespace BaseInterprete.Models
 
         public string obtenerCadena()
         {
-            return expresion.Substring(posicion, posicion
-                    + longitud);
+            return expresion.Substring(posicion, longitud);
         }
 
         public bool validarIdentificador(string cadena)
