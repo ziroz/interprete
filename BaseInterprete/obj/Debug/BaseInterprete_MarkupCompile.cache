@@ -4,7 +4,7 @@
 winexe
 C#
 .cs
-C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\BaseInterprete\BaseInterprete\obj\Debug\
+D:\interprete\BaseInterprete\obj\Debug\
 BaseInterprete
 none
 false
@@ -13,7 +13,7 @@ DEBUG;TRACE
 1-1673130859
 
 132092358032
-171986141427
+171407928644
 UserControls\UserControlTextEditor.xaml;
 
 False

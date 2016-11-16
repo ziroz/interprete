@@ -57,6 +57,9 @@ namespace BaseInterprete.Models
                         object numero2 = pilaNumeros.Pop();
                         object numero1 = pilaNumeros.Pop();
 
+                        if (numero1.GetType() == typeof(Variable)) numero1 = ((Variable)numero1).valor;
+                        if (numero2.GetType() == typeof(Variable)) numero2 = ((Variable)numero2).valor;
+
                         if (numero1.GetType() == typeof(Int32)
                                 && numero2.GetType() == typeof(Int32)) {
                             pilaNumeros.Push(Convert.ToInt32(numero1) + Convert.ToInt32(numero2));
