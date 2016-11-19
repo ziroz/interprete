@@ -48,6 +48,11 @@ namespace BaseInterprete.Models
         RESERVADA_FOR = 28,
         RESERVADA_WHILE = 29,
 
+        CADENA_STRING = 30,
+
+        RESERVADA_TRUE = 31,
+        RESERVADA_FALSE = 32,
+
         VALOR_ENTERO = 100,
         VALOR_REAL = 101,
         VALOR_LOGICO = 102,

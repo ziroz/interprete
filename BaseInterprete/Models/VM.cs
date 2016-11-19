@@ -9,7 +9,7 @@ namespace BaseInterprete.Models
     public class VM
     {
         private List<object> listaInstrucciones;
-        private Stack<object> pilaNumeros;
+        private Stack<object> pilaDatos;
         private string cadenaResultado;
         private List<Variable> tablaDeSimbolos;
 
@@ -21,18 +21,18 @@ namespace BaseInterprete.Models
 
             listaInstrucciones = parser.obtenerInstrucciones();
             tablaDeSimbolos = parser.obtenerTablaDeSimbolos();
-            pilaNumeros = new Stack<object>();
+            pilaDatos = new Stack<object>();
         }
         public void run()
         {
             int n = listaInstrucciones.Count();
             int i = 0;
 
+            /*
             foreach (var item in listaInstrucciones)
             {
                 cadenaResultado += "\n " + item;
-            }
-            /*
+            }*/
             while (i < n)
             {
                 Instruccion operacion = (Instruccion)listaInstrucciones[i];
@@ -42,11 +42,11 @@ namespace BaseInterprete.Models
                     case Instruccion.FIN:
                         return;
                     case Instruccion.PRINT:
-                        if (pilaNumeros.Count() > 0)
+                        if (pilaDatos.Count() > 0)
                         {
-                            object ans = pilaNumeros.Pop();
+                            object ans = pilaDatos.Pop();
 
-                            cadenaResultado += "ans = " + ans + "\n";
+                            //cadenaResultado += "ans = " + ans + "\n";
 
                             //if (ans.intValue() == ans.doubleValue()) {
                             //    cadenaResultado += "ans = " + ans.intValue() + "\n";
@@ -56,28 +56,33 @@ namespace BaseInterprete.Models
                         }
                         break;
                     case Instruccion.POP:
-                        if (pilaNumeros.Count() > 0)
+                        if (pilaDatos.Count() > 0)
                         {
-                            pilaNumeros.Pop();
+                            pilaDatos.Pop();
                         }
                         break;
                     case Instruccion.SUMA:
-                        if (pilaNumeros.Count() > 1)
+                        if (pilaDatos.Count() > 1)
                         {
-                            object numero2 = pilaNumeros.Pop();
-                            object numero1 = pilaNumeros.Pop();
+                            object numero2 = pilaDatos.Pop();
+                            object numero1 = pilaDatos.Pop();
 
                             if (numero1.GetType() == typeof(Variable)) numero1 = ((Variable)numero1).valor;
                             if (numero2.GetType() == typeof(Variable)) numero2 = ((Variable)numero2).valor;
 
+
+                            if (numero1.GetType() == typeof(String) || numero2.GetType() == typeof(String))
+                            {
+                                pilaDatos.Push(Convert.ToString(numero1) + Convert.ToString(numero2));
+                            }else
                             if (numero1.GetType() == typeof(Int32)
                                     && numero2.GetType() == typeof(Int32))
                             {
-                                pilaNumeros.Push(Convert.ToInt32(numero1) + Convert.ToInt32(numero2));
+                                pilaDatos.Push(Convert.ToInt32(numero1) + Convert.ToInt32(numero2));
                             }
                             else
                             {
-                                pilaNumeros.Push(Convert.ToSingle(numero1) + Convert.ToSingle(numero2));
+                                pilaDatos.Push(Convert.ToSingle(numero1) + Convert.ToSingle(numero2));
                             }
 
                         }
@@ -87,10 +92,10 @@ namespace BaseInterprete.Models
                         }
                         break;
                     case Instruccion.RESTA:
-                        if (pilaNumeros.Count() > 1)
+                        if (pilaDatos.Count() > 1)
                         {
-                            object numero2 = pilaNumeros.Pop();
-                            object numero1 = pilaNumeros.Pop();
+                            object numero2 = pilaDatos.Pop();
+                            object numero1 = pilaDatos.Pop();
 
                             if (numero1.GetType() == typeof(Variable)) numero1 = ((Variable)numero1).valor;
                             if (numero2.GetType() == typeof(Variable)) numero2 = ((Variable)numero2).valor;
@@ -98,11 +103,11 @@ namespace BaseInterprete.Models
                             if (numero1.GetType() == typeof(Int32)
                                 && numero2.GetType() == typeof(Int32))
                             {
-                                pilaNumeros.Push(Convert.ToInt32(numero1) - Convert.ToInt32(numero2));
+                                pilaDatos.Push(Convert.ToInt32(numero1) - Convert.ToInt32(numero2));
                             }
                             else
                             {
-                                pilaNumeros.Push(Convert.ToSingle(numero1) - Convert.ToSingle(numero2));
+                                pilaDatos.Push(Convert.ToSingle(numero1) - Convert.ToSingle(numero2));
                             }
 
                         }
@@ -112,10 +117,10 @@ namespace BaseInterprete.Models
                         }
                         break;
                     case Instruccion.MULTIPLICACION:
-                        if (pilaNumeros.Count() > 1)
+                        if (pilaDatos.Count() > 1)
                         {
-                            object numero2 = pilaNumeros.Pop();
-                            object numero1 = pilaNumeros.Pop();
+                            object numero2 = pilaDatos.Pop();
+                            object numero1 = pilaDatos.Pop();
 
                             if (numero1.GetType() == typeof(Variable)) numero1 = ((Variable)numero1).valor;
                             if (numero2.GetType() == typeof(Variable)) numero2 = ((Variable)numero2).valor;
@@ -123,11 +128,11 @@ namespace BaseInterprete.Models
                             if (numero1.GetType() == typeof(Int32)
                                     && numero2.GetType() == typeof(Int32))
                             {
-                                pilaNumeros.Push(Convert.ToInt32(numero1) * Convert.ToInt32(numero2));
+                                pilaDatos.Push(Convert.ToInt32(numero1) * Convert.ToInt32(numero2));
                             }
                             else
                             {
-                                pilaNumeros.Push(Convert.ToSingle(numero1) * Convert.ToSingle(numero2));
+                                pilaDatos.Push(Convert.ToSingle(numero1) * Convert.ToSingle(numero2));
                             }
 
                         }
@@ -138,10 +143,10 @@ namespace BaseInterprete.Models
                         break;
 
                     case Instruccion.DIVISION:
-                        if (pilaNumeros.Count() > 1)
+                        if (pilaDatos.Count() > 1)
                         {
-                            object numero2 = pilaNumeros.Pop();
-                            object numero1 = pilaNumeros.Pop();
+                            object numero2 = pilaDatos.Pop();
+                            object numero1 = pilaDatos.Pop();
 
                             if (numero1.GetType() == typeof(Variable)) numero1 = ((Variable)numero1).valor;
                             if (numero2.GetType() == typeof(Variable)) numero2 = ((Variable)numero2).valor;
@@ -150,11 +155,11 @@ namespace BaseInterprete.Models
                             if (numero1.GetType() == typeof(Int32)
                                     && numero2.GetType() == typeof(Int32))
                             {
-                                pilaNumeros.Push(Convert.ToInt32(numero1) / Convert.ToInt32(numero2));
+                                pilaDatos.Push(Convert.ToInt32(numero1) / Convert.ToInt32(numero2));
                             }
                             else
                             {
-                                pilaNumeros.Push(Convert.ToSingle(numero1) / Convert.ToSingle(numero2));
+                                pilaDatos.Push(Convert.ToSingle(numero1) / Convert.ToSingle(numero2));
                             }
 
                         }
@@ -165,25 +170,34 @@ namespace BaseInterprete.Models
                         break;
                     case Instruccion.PUSH_NUMERO_ENTERO:
                         ++i;
-                        pilaNumeros.Push(Convert.ToInt32(listaInstrucciones[i]));
+                        pilaDatos.Push(Convert.ToInt32(listaInstrucciones[i]));
+                        break;
+                    case Instruccion.PUSH_VARIABLE_CADENA:
+                        ++i;
+                        pilaDatos.Push(listaInstrucciones[i]);
+                        break;
+                    case Instruccion.PUSH_VARIABLE_FALSE:
+                    case Instruccion.PUSH_VARIABLE_TRUE:
+                        ++i;
+                        pilaDatos.Push(listaInstrucciones[i]);
                         break;
                     case Instruccion.PUSH_IDENTIFICADOR:
                         ++i;
                         Variable variable = tablaDeSimbolos.First(m => m.nombre == listaInstrucciones[i].ToString());
-                        pilaNumeros.Push(variable);
+                        pilaDatos.Push(variable);
                         break;
                     case Instruccion.PUSH_NUMERO_REAL:
                         ++i;
-                        pilaNumeros.Push(Convert.ToSingle(listaInstrucciones[i]));
+                        pilaDatos.Push(Convert.ToSingle(listaInstrucciones[i]));
                         break;
                     case Instruccion.ASIGNACION:
                         ++i;
                         int index = Convert.ToInt32(listaInstrucciones[i]);
-                        if (pilaNumeros.Count() > 0)
+                        if (pilaDatos.Count() > 0)
                         {
-                            object numero1 = pilaNumeros.Pop();
+                            object numero1 = pilaDatos.Pop();
 
-                            pilaNumeros.Push(numero1);
+                            pilaDatos.Push(numero1);
 
                             tablaDeSimbolos[index].valor = numero1;
 
@@ -201,7 +215,7 @@ namespace BaseInterprete.Models
                 }
 
                 ++i;
-            }*/
+            }
         }
 
         public String getAnswer()

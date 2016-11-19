@@ -156,7 +156,17 @@ namespace BaseInterprete.Models
                     case '}':
                         valorToken = Token.CERRAR_LLAVE;
                         break;
+                    case '"':
 
+                        while (posicion + longitud < n && expresion[posicion + longitud] != '"')
+                        {
+                            ++longitud;
+                        }
+
+                        valorToken = Token.CADENA_STRING;
+                        ++longitud;
+                        break;
+/*
                     case 'i':
                         if ((posicion + longitud < n && (expresion[posicion + longitud] == 'f'))
                             && (posicion + longitud+1 < n && (expresion[posicion + longitud +1] == ' ')))
@@ -204,7 +214,7 @@ namespace BaseInterprete.Models
                             valorToken = Token.RESERVADA_FOR;
                             break;
                         }
-                        goto default;
+                        goto default;*/
                     default:
                         if (char.IsDigit(caracter))
                         {
@@ -238,11 +248,20 @@ namespace BaseInterprete.Models
 
                                 while (posicion + longitud < n
                                     && validarIdentificador(expresion.Substring(posicion, longitud+1)))
-                            {
-                                ++longitud;
-                            }
+                                {
+                                    ++longitud;
+                                }
 
-                                valorToken = Token.IDENTIFICADOR;
+                                var keyWord = isKeyWord(expresion.Substring(posicion, longitud));
+
+                                if (keyWord != null)
+                                {
+                                    valorToken = keyWord;
+                                }
+                                else
+                                {
+                                    valorToken = Token.IDENTIFICADOR;
+                                }
                             }
                         break;
                 }
@@ -267,6 +286,17 @@ namespace BaseInterprete.Models
 
             return token == nuevoToken;
         }
+
+        public Token? isKeyWord(string cadena)
+        {
+            if (KeyWords.Keys.ContainsKey(cadena))
+            {
+                return KeyWords.Keys[cadena];
+            }
+
+            return null;
+        }
+
         public bool nextTokenIs(Token token)
         {
             int auxiliarPoisicion = posicion;
@@ -295,9 +325,14 @@ namespace BaseInterprete.Models
             return expresion.Substring(posicion, longitud);
         }
 
-        public string obtenerCadena()
+        public string obtenerVariable()
         {
             return expresion.Substring(posicion, longitud);
+        }
+
+        public string obtenerCadena()
+        {
+            return expresion.Substring(posicion + 1, longitud - 2);
         }
 
         public bool validarIdentificador(string cadena)

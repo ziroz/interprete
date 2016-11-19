@@ -28,6 +28,9 @@ namespace BaseInterprete.Models
         PUSH_NUMERO_REAL = 101,
         PUSH_IDENTIFICADOR = 102,
         ASIGNACION = 103,
+        PUSH_VARIABLE_CADENA = 104,
+        PUSH_VARIABLE_TRUE = 105,
+        PUSH_VARIABLE_FALSE = 106,
 
         PRINT = 200,
         POP = 201,

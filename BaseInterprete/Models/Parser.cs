@@ -87,12 +87,37 @@ namespace BaseInterprete.Models
                 lexer.advance();
             }else if (lexer.match(Token.IDENTIFICADOR))
             {
-                string cadena = lexer.obtenerCadena();
+                string cadena = lexer.obtenerVariable();
 
                 /*   Acá posiblemente se validan las palabras reservadas    */
 
                 listaInstrucciones.Add(Instruccion.PUSH_IDENTIFICADOR);
                 listaInstrucciones.Add(cadena);
+
+                lexer.advance();
+            }
+            else if (lexer.match(Token.CADENA_STRING))
+            {
+                string cadena = lexer.obtenerCadena();
+
+                /*   Acá posiblemente se validan las palabras reservadas    */
+
+                listaInstrucciones.Add(Instruccion.PUSH_VARIABLE_CADENA);
+                listaInstrucciones.Add(cadena);
+
+                lexer.advance();
+            }
+            else if (lexer.match(Token.RESERVADA_TRUE))
+            {
+                listaInstrucciones.Add(Instruccion.PUSH_VARIABLE_TRUE);
+                listaInstrucciones.Add(true);
+
+                lexer.advance();
+            }
+            else if (lexer.match(Token.RESERVADA_FALSE))
+            {
+                listaInstrucciones.Add(Instruccion.PUSH_VARIABLE_FALSE);
+                listaInstrucciones.Add(false);
 
                 lexer.advance();
             }
@@ -136,6 +161,7 @@ namespace BaseInterprete.Models
             }
         }
 
+
         public void expresion()
         {
             termino();
@@ -166,7 +192,7 @@ namespace BaseInterprete.Models
 
         public void asignacion()
         {
-            String cadena = lexer.obtenerCadena();
+            String cadena = lexer.obtenerVariable();
 
             Variable id = new Variable(cadena);
 
