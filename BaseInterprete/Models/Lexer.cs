@@ -163,55 +163,6 @@ namespace BaseInterprete.Models
                         valorToken = Token.CADENA_STRING;
                         ++longitud;
                         break;
-/*
-                    case 'i':
-                        if ((posicion + longitud < n && (expresion[posicion + longitud] == 'f'))
-                            && (posicion + longitud+1 < n && (expresion[posicion + longitud +1] == ' ')))
-                        {
-                            longitud += 2;
-                            valorToken = Token.RESERVADA_IF;
-                            break;
-                        }
-                        goto case 'e';
-
-                    case 'e':
-                        if ((posicion + longitud < n && (expresion[posicion + longitud] == 'l'))
-                            && (posicion + longitud + 1 < n && (expresion[posicion + longitud + 1] == 's'))
-                            && (posicion + longitud + 2 < n && (expresion[posicion + longitud + 2] == 'e'))
-                            && (posicion + longitud + 3 < n && (expresion[posicion + longitud + 3] == ' '))
-                            )
-                        {
-                            longitud += 4;
-                            valorToken = Token.RESERVADA_ELSE;
-                            break;
-                        }
-                        goto case 'w';
-                        
-                    case 'w':
-                        if ((posicion + longitud < n && (expresion[posicion + longitud] == 'h'))
-                            && (posicion + longitud + 1 < n && (expresion[posicion + longitud + 1] == 'i'))
-                            && (posicion + longitud + 2 < n && (expresion[posicion + longitud + 2] == 'l'))
-                            && (posicion + longitud + 3 < n && (expresion[posicion + longitud + 3] == 'e'))
-                            && (posicion + longitud + 4 < n && (expresion[posicion + longitud + 4] == ' '))
-                            )
-                        {
-                            longitud += 5;
-                            valorToken = Token.RESERVADA_WHILE;
-                            break;
-                        }
-                        goto case 'f';
-
-                    case 'f':
-                        if ((posicion + longitud < n && (expresion[posicion + longitud] == 'o'))
-                            && (posicion + longitud + 1 < n && (expresion[posicion + longitud + 1] == 'r'))
-                            && (posicion + longitud + 2 < n && (expresion[posicion + longitud + 2] == ' '))
-                            )
-                        {
-                            longitud += 3;
-                            valorToken = Token.RESERVADA_FOR;
-                            break;
-                        }
-                        goto default;*/
                     default:
                         if (char.IsDigit(caracter))
                         {

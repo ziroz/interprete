@@ -24,11 +24,19 @@ namespace BaseInterprete
         {
             string code = userControlTextEditor1.GetText();
 
-            VM calculadora = new VM(code);
+            try
+            {
 
-            calculadora.run();
+                VM calculadora = new VM(code);
 
-            txtResult.Text = calculadora.getAnswer();
+                calculadora.run();
+
+                txtResult.Text = calculadora.getAnswer();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrio una Excepción", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

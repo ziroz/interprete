@@ -47,7 +47,7 @@ namespace BaseInterprete.Models
                         {
                             object ans = pilaDatos.Pop();
 
-                            cadenaResultado += "ans = " + ans + "\n";
+                            //cadenaResultado += "ans = " + ans + "\n";
 
                             //if (ans.intValue() == ans.doubleValue()) {
                             //    cadenaResultado += "ans = " + ans.intValue() + "\n";
@@ -72,16 +72,17 @@ namespace BaseInterprete.Models
                             if (numero1.GetType() == typeof(String) || numero2.GetType() == typeof(String))
                             {
                                 pilaDatos.Push(getValue<string>(numero1) + getValue<string>(numero2));
-                            }else
-                            if (numero1.GetType() == typeof(Int32)
-                                    && numero2.GetType() == typeof(Int32))
-                            {
-                                pilaDatos.Push(getValue<int>(numero1) + getValue<int>(numero2));
                             }
                             else
-                            {
-                                pilaDatos.Push(getValue<float>(numero1) + getValue<float>(numero2));
-                            }
+                                if (numero1.GetType() == typeof(Int32)
+                                        && numero2.GetType() == typeof(Int32))
+                                {
+                                    pilaDatos.Push(getValue<int>(numero1) + getValue<int>(numero2));
+                                }
+                                else
+                                {
+                                    pilaDatos.Push(getValue<float>(numero1) + getValue<float>(numero2));
+                                }
 
                         }
                         else
@@ -229,7 +230,7 @@ namespace BaseInterprete.Models
                             else if (operacion == Instruccion.MENOR_QUE) pilaDatos.Push(valor1 < valor2);
                             else if (operacion == Instruccion.MENOR_IGUAL_QUE) pilaDatos.Push(valor1 <= valor2);
                             else if (operacion == Instruccion.MAYOR_IGUAL_QUE) pilaDatos.Push(valor1 >= valor2);
-                            
+
 
                         }
                         else
@@ -304,7 +305,7 @@ namespace BaseInterprete.Models
             return (T)getValue(element, typeof(T));
         }
 
-        private dynamic getValue(object element, Type tipo) 
+        private dynamic getValue(object element, Type tipo)
         {
             return Convert.ChangeType(element, tipo);
         }

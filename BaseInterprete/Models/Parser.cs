@@ -208,7 +208,7 @@ namespace BaseInterprete.Models
             if (lexer.match(Token.NO_LOGICO))
             {
                 lexer.advance();
-                terminoLogico();
+                expresion();
                 listaInstrucciones.Add(Instruccion.NO_LOGICO);
             }
         }
@@ -217,7 +217,7 @@ namespace BaseInterprete.Models
             if (lexer.match(Token.O_LOGICO))
             {
                 lexer.advance();
-                segundoNivel();
+                expresion();
                 listaInstrucciones.Add(Instruccion.O_LOGICO);
                 condicionalLogicoOR();
             }
@@ -227,7 +227,7 @@ namespace BaseInterprete.Models
             if (lexer.match(Token.Y_LOGICO))
             {
                 lexer.advance();
-                tercerNivel();
+                expresion();
                 listaInstrucciones.Add(Instruccion.Y_LOGICO);
                 condicionalLogicoAND();
             }
@@ -237,14 +237,14 @@ namespace BaseInterprete.Models
             if (lexer.match(Token.IGUAL_QUE))
             {
                 lexer.advance();
-                cuartoNivel(); // Puede funcionar mejor con Expresion se debe preguntar
+                expresion(); // Puede funcionar mejor con Expresion se debe preguntar
                 listaInstrucciones.Add(Instruccion.IGUAL);
                 comparadorLogico();
             }
             if (lexer.match(Token.DIFERENTE))
             {
                 lexer.advance();
-                cuartoNivel();
+                expresion();
                 listaInstrucciones.Add(Instruccion.DIFERENTE);
                 comparadorLogico();
             }
@@ -255,14 +255,14 @@ namespace BaseInterprete.Models
             if (lexer.match(Token.MAYOR_QUE))
             {
                 lexer.advance();
-                factor();
+                expresion();
                 listaInstrucciones.Add(Instruccion.MAYOR_QUE);
                 operadorRelacional();
             }
             if (lexer.match(Token.MENOR_QUE))
             {
                 lexer.advance();
-                factor();
+                expresion();
                 listaInstrucciones.Add(Instruccion.MENOR_QUE);
                 operadorRelacional();
             }
@@ -270,7 +270,7 @@ namespace BaseInterprete.Models
             if (lexer.match(Token.MENOR_IGUAL_QUE))
             {
                 lexer.advance();
-                factor();
+                expresion();
                 listaInstrucciones.Add(Instruccion.MENOR_IGUAL_QUE);
                 operadorRelacional();
             }
@@ -278,7 +278,7 @@ namespace BaseInterprete.Models
             if (lexer.match(Token.MAYOR_IGUAL_QUE))
             {
                 lexer.advance();
-                factor();
+                expresion();
                 listaInstrucciones.Add(Instruccion.MAYOR_IGUAL_QUE);
                 operadorRelacional();
             }
@@ -304,6 +304,11 @@ namespace BaseInterprete.Models
                 lexer.advance();
                 asignaciones();
             }
+            else
+                if (lexer.match(Token.ASIGNACION))
+                {
+                    lexer.advance();
+                }
         }
 
         public void asignacion()
