@@ -1,0 +1,20 @@
+expresion = termino terminoPrimo
+termino = factor factorPrimo
+
+expresionLogica = negacion primerNivel | epsilon
+primerNivel = segundoNivel condicionalLogicoOR | epsilon
+segundoNivel = tercerNivel condicionalLogicoAND | epsilon
+tercerNivel = cuartoNivel comparadorLogico | epsilon
+cuartoNivel = factor operadorRelacional | epsilon
+
+negacion = ! (TRUE | FALSE) negacion | epsilon
+operadorRelacional = ( < | > | <= | =>) factor operadoresRelacionales | epsilon
+comparadorLogico= ( == | <>) factor comparadorLogico | epsilon
+condicionalLogicoAND = (&&) factor condicionalLogicoAND | epsilon
+condicionalLogicoOR = (||) factor condicionalLogicoOR | epsilon
+
+factorPrimo= ( * | /) factor factorPrimo | epsilon
+terminoPrimo = (+ | -) termino terminoPrimo | epsilon
+
+
+factor = ENTERO | REAL | ID | TRUE | FALSE | "(" expresion ")"
