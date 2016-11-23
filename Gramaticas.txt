@@ -7,11 +7,11 @@ segundoNivel = tercerNivel condicionalLogicoAND | epsilon
 tercerNivel = cuartoNivel comparadorLogico | epsilon
 cuartoNivel = factor operadorRelacional | epsilon
 
-negacion = ! (TRUE | FALSE) negacion | epsilon
-operadorRelacional = ( < | > | <= | =>) factor operadoresRelacionales | epsilon
-comparadorLogico= ( == | <>) factor comparadorLogico | epsilon
-condicionalLogicoAND = (&&) factor condicionalLogicoAND | epsilon
-condicionalLogicoOR = (||) factor condicionalLogicoOR | epsilon
+negacion = ! (TRUE | FALSE) expresion negacion | epsilon
+operadorRelacional = ( < | > | <= | =>) expresion operadoresRelacionales | epsilon
+comparadorLogico= ( == | <>) expresion comparadorLogico | epsilon
+condicionalLogicoAND = (&&) expresion condicionalLogicoAND | epsilon
+condicionalLogicoOR = (||) expresion condicionalLogicoOR | epsilon
 
 factorPrimo= ( * | /) factor factorPrimo | epsilon
 terminoPrimo = (+ | -) termino terminoPrimo | epsilon

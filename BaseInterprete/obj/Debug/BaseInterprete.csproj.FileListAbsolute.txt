@@ -76,3 +76,15 @@ C:\Users\estudiante\Desktop\sdfsdg\interprete\BaseInterprete\obj\Debug\BaseInter
 C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\bin\Debug\BaseInterprete.exe.config
 C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\obj\Debug\BaseInterprete.exe
 C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\obj\Debug\BaseInterprete.pdb
+C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\bin\Debug\BaseInterprete.exe
+C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\bin\Debug\BaseInterprete.pdb
+C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\bin\Debug\ICSharpCode.AvalonEdit.dll
+C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\bin\Debug\ICSharpCode.AvalonEdit.xml
+C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\obj\Debug\BaseInterprete.csprojResolveAssemblyReference.cache
+C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\obj\Debug\UserControls\UserControlTextEditor.baml
+C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\obj\Debug\UserControls\UserControlTextEditor.g.cs
+C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\obj\Debug\BaseInterprete_MarkupCompile.cache
+C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\obj\Debug\BaseInterprete.g.resources
+C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\obj\Debug\BaseInterprete.Form1.resources
+C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\obj\Debug\BaseInterprete.Properties.Resources.resources
+C:\Users\Universidad Poligran\Documents\Visual Studio 2013\Projects\interprete\BaseInterprete\obj\Debug\BaseInterprete.csproj.GenerateResource.Cache
