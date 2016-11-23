@@ -89,16 +89,7 @@ namespace BaseInterprete.Models
                         }
                         break;
                     case '>':
-                        if (posicion + longitud < n
-                                    && (expresion[posicion + longitud] == '='))
-                        {
-                            ++longitud;
-                            valorToken = Token.MAYOR_IGUAL_QUE;
-                        }
-                        else
-                        {
-                            valorToken = Token.MAYOR_QUE;
-                        }
+                        valorToken = Token.MAYOR_QUE;
                         break;
                     case '=':
                         if (posicion + longitud < n
@@ -106,6 +97,12 @@ namespace BaseInterprete.Models
                         {
                             ++longitud;
                             valorToken = Token.IGUAL_QUE;
+                        }
+                        else  if (posicion + longitud < n
+                                    && (expresion[posicion + longitud] == '>'))
+                        {
+                            ++longitud;
+                            valorToken = Token.MAYOR_IGUAL_QUE;
                         }
                         else
                         {
@@ -225,7 +222,7 @@ namespace BaseInterprete.Models
                             }
 
                             if (posicion + longitud < n
-                                    && (expresion[posicion + longitud] == '.' || expresion[posicion + longitud] == ','))
+                                    && (expresion[posicion + longitud] == '.'))
                             {
 
                                 longitud++;

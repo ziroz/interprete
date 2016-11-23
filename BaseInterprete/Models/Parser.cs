@@ -85,7 +85,8 @@ namespace BaseInterprete.Models
                 //System.out.println(")");
 
                 lexer.advance();
-            }else if (lexer.match(Token.IDENTIFICADOR))
+            }
+            else if (lexer.match(Token.IDENTIFICADOR))
             {
                 string cadena = lexer.obtenerVariable();
 
@@ -122,7 +123,7 @@ namespace BaseInterprete.Models
                 lexer.advance();
             }
         }
-       
+
         public void terminoPrimo()
         {
             if (lexer.match(Token.SUMA))
@@ -141,7 +142,7 @@ namespace BaseInterprete.Models
                 terminoPrimo();
             }
         }
-        
+
         public void factorPrimo()
         {
             if (lexer.match(Token.MULTIPLICACION))
@@ -161,11 +162,12 @@ namespace BaseInterprete.Models
             }
         }
 
-
         public void expresion()
         {
             termino();
             terminoPrimo();
+
+            terminoLogico();
         }
 
         public void termino()
@@ -175,16 +177,130 @@ namespace BaseInterprete.Models
         }
 
 
+
+        public void terminoLogico()
+        {
+            negacion();
+            primerNivel();
+        }
+        public void primerNivel()
+        {
+            segundoNivel();
+            condicionalLogicoOR();
+        }
+        public void segundoNivel()
+        {
+            tercerNivel();
+            condicionalLogicoAND();
+        }
+        public void tercerNivel()
+        {
+            cuartoNivel();
+            comparadorLogico();
+        }
+        public void cuartoNivel()
+        {
+            factor();
+            operadorRelacional();
+        }
+        public void negacion()
+        {
+            if (lexer.match(Token.NO_LOGICO))
+            {
+                lexer.advance();
+                terminoLogico();
+                listaInstrucciones.Add(Instruccion.NO_LOGICO);
+            }
+        }
+        public void condicionalLogicoOR()
+        {
+            if (lexer.match(Token.O_LOGICO))
+            {
+                lexer.advance();
+                segundoNivel();
+                listaInstrucciones.Add(Instruccion.O_LOGICO);
+                condicionalLogicoOR();
+            }
+        }
+        public void condicionalLogicoAND()
+        {
+            if (lexer.match(Token.Y_LOGICO))
+            {
+                lexer.advance();
+                tercerNivel();
+                listaInstrucciones.Add(Instruccion.Y_LOGICO);
+                condicionalLogicoAND();
+            }
+        }
+        public void comparadorLogico()
+        {
+            if (lexer.match(Token.IGUAL_QUE))
+            {
+                lexer.advance();
+                cuartoNivel(); // Puede funcionar mejor con Expresion se debe preguntar
+                listaInstrucciones.Add(Instruccion.IGUAL);
+                comparadorLogico();
+            }
+            if (lexer.match(Token.DIFERENTE))
+            {
+                lexer.advance();
+                cuartoNivel();
+                listaInstrucciones.Add(Instruccion.DIFERENTE);
+                comparadorLogico();
+            }
+        }
+
+        public void operadorRelacional()
+        {
+            if (lexer.match(Token.MAYOR_QUE))
+            {
+                lexer.advance();
+                factor();
+                listaInstrucciones.Add(Instruccion.MAYOR_QUE);
+                operadorRelacional();
+            }
+            if (lexer.match(Token.MENOR_QUE))
+            {
+                lexer.advance();
+                factor();
+                listaInstrucciones.Add(Instruccion.MENOR_QUE);
+                operadorRelacional();
+            }
+
+            if (lexer.match(Token.MENOR_IGUAL_QUE))
+            {
+                lexer.advance();
+                factor();
+                listaInstrucciones.Add(Instruccion.MENOR_IGUAL_QUE);
+                operadorRelacional();
+            }
+
+            if (lexer.match(Token.MAYOR_IGUAL_QUE))
+            {
+                lexer.advance();
+                factor();
+                listaInstrucciones.Add(Instruccion.MAYOR_IGUAL_QUE);
+                operadorRelacional();
+            }
+        }
+
         public void asignaciones()
         {
             if (lexer.match(Token.IDENTIFICADOR) && lexer.nextTokenIs(Token.ASIGNACION))
             {
                 asignacion();
-                if (!lexer.match(Token.PUNTO_COMA))
+
+                if (lexer.match(Token.COMA))
                 {
-                    //System.out.println("Error: Se esperaba ; en la instrucción de asignación.");
-                    return;
+                    listaInstrucciones.Add(Instruccion.PRINT);
                 }
+                else
+                    if (!lexer.match(Token.PUNTO_COMA))
+                    {
+                        //System.out.println("Error: Se esperaba ; en la instrucción de asignación.");
+                        return;
+                    }
+
                 lexer.advance();
                 asignaciones();
             }
